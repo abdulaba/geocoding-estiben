@@ -25,7 +25,6 @@ export default class extends Controller {
     };
 
     this.markersValue.forEach((element) => {
-      console.log(element.reverse())
        geojson.features[0].geometry.coordinates.push(element);
     });
 
@@ -34,8 +33,8 @@ export default class extends Controller {
       container: "map",
       // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
       style: "mapbox://styles/mapbox/light-v10",
-      center: [this.markersValue[0][1], this.markersValue[0][0]],
-      zoom: 1,
+      center: [this.markersValue[0][0], this.markersValue[0][1]],
+      zoom: 12,
     });
 
 
@@ -63,7 +62,7 @@ export default class extends Controller {
 
       const coordinates = geojson.features[0].geometry.coordinates;
 
-      const bounds = new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]);
+      const bounds = new mapboxgl.LngLatBounds(coordinates[0], coordinates.last);
 
       // Extend the 'LngLatBounds' to include every coordinate in the bounds result.
       for (const coord of coordinates) {

@@ -5,7 +5,7 @@ class FlatsController < ApplicationController
   def index
     @flats = Flat.all
     @markers = @flats.geocoded.map do |flat|
-      [flat.latitude, flat.longitude]
+      [flat.longitude, flat.latitude]
     end
   end
 
